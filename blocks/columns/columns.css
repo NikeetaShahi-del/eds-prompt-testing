@@ -36,35 +36,94 @@
   color: #1a212b;
 }
 
-.columns a {
+.columns em a,
+.columns a.button.secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: transparent;
+  color: #630f54;
+  border: 1px solid #630f54;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.columns em a:hover,
+.columns a.button.secondary:hover {
+  background-color: rgb(99 15 84 / 5%);
+  color: #630f54;
+  text-decoration: none;
+}
+
+.columns a.button {
   display: inline-flex;
   align-items: center;
   padding: 12px 24px;
   background-color: #630f54;
   color: #fff;
   border: 1px solid #630f54;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   margin-top: 16px;
-  transition: background-color 0.2s ease;
 }
 
-.columns em a {
-  background-color: transparent;
-  color: #630f54;
-  border: 1px solid #630f54;
-}
-
-.columns a:hover {
+.columns a.button:hover {
   background-color: #4a0b3f;
   text-decoration: none;
   color: #fff;
 }
 
-.columns em a:hover {
-  background-color: rgb(99 15 84 / 5%);
-  color: #630f54;
+/* Dark variant */
+.columns-dark-container {
+  background-color: #630f54;
+}
+
+.columns-dark-container .columns-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.columns.dark {
+  background-color: #630f54;
+  padding: 40px 24px;
+}
+
+.columns.dark h2 {
+  color: #f2e9d8;
+  font-size: 36px;
+}
+
+.columns.dark p {
+  color: #f2e9d8;
+}
+
+.columns.dark em a,
+.columns.dark a.button.secondary {
+  background-color: transparent;
+  color: #f2e9d8;
+  border: 1px solid #f2e9d8;
+}
+
+.columns.dark em a:hover,
+.columns.dark a.button.secondary:hover {
+  background-color: rgb(242 233 216 / 10%);
+  color: #f2e9d8;
+}
+
+.columns.dark a.button {
+  background-color: transparent;
+  color: #f2e9d8;
+  border: 1px solid #f2e9d8;
+}
+
+.columns.dark a.button:hover {
+  background-color: rgb(242 233 216 / 10%);
+  color: #f2e9d8;
 }
 
 @media (width >= 900px) {
@@ -81,5 +140,18 @@
 
   .columns h2 {
     font-size: 36px;
+  }
+
+  .columns.dark {
+    padding: 60px 32px;
+  }
+
+  .columns.dark > div {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .columns.dark h2 {
+    font-size: 44px;
   }
 }

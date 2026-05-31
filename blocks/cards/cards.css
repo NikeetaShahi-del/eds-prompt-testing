@@ -40,6 +40,13 @@
   justify-content: space-between;
   min-height: 200px;
   border: none;
+  border-bottom: 4px solid #da4727;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cards > ul > li:hover {
+  transform: translateY(-4px);
 }
 
 .cards .cards-card-body {
@@ -58,6 +65,12 @@
 .cards .cards-card-body h3 a {
   color: #630f54;
   text-decoration: none;
+}
+
+.cards .cards-card-body h3 a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 .cards .cards-card-body h3 a:hover {
