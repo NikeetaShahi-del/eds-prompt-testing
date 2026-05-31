@@ -1,5 +1,5 @@
 {
-  "name": "@adobe/aem-block-collection",
+  "name": "@adobe/eds-prompt-testing",
   "private": true,
   "version": "1.0.0",
   "description": "Block collection for AEM",
