@@ -50,20 +50,20 @@
   transition: background-color 0.2s ease;
 }
 
-.columns a:hover {
-  background-color: #4a0b3f;
-  text-decoration: none;
-  color: #fff;
-}
-
 .columns em a {
   background-color: transparent;
   color: #630f54;
   border: 1px solid #630f54;
 }
 
+.columns a:hover {
+  background-color: #4a0b3f;
+  text-decoration: none;
+  color: #fff;
+}
+
 .columns em a:hover {
-  background-color: rgba(99, 15, 84, 0.05);
+  background-color: rgb(99 15 84 / 5%);
   color: #630f54;
 }
 
