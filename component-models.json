@@ -302,6 +302,35 @@
     ]
   },
   {
+    "id": "stats",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "stat",
+        "label": "Statistic"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      }
+    ]
+  },
+  {
+    "id": "social-links",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "modal",
     "fields": [
       {
