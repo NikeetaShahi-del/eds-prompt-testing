@@ -1,7 +1,7 @@
 # ETS — Technical Reference
 
 > **Source:** ETS (https://www.ets.org/gre.html)
-> **Target:** AEM Edge Delivery Services ({{PROJECT_TYPE}})
+> **Target:** AEM Edge Delivery Services (xwalk)
 
 ---
 
@@ -9,9 +9,9 @@
 
 | Setting | Value |
 |---------|-------|
-| AEM site path | `/content/ets` |
+| AEM site path | `/content/eds-ets` |
 | AEM assets folder | `/content/dam/ets` |
-
+| AEM site name | `ets` |
 
 ---
 
@@ -19,13 +19,9 @@
 
 ```
 ├── blocks/            # Block implementations (JS + CSS per block)
-├── content/           # Migrated content (.plain.html + images + media)
-├── styles/styles.css  # Global design tokens (FROZEN)
-├── tools/importer/
-│   ├── parsers/       # Block parsers
-│   ├── transformers/  # DOM transformers
-│   ├── import-*.js    # Import scripts
-│   └── page-templates.json
+├── content/           # Migrated content (.html + images)
+├── styles/styles.css  # Global design tokens
+├── scripts/           # EDS framework scripts
 ├── models/            # Component model definitions
 └── .migration/project.json
 ```
@@ -34,11 +30,9 @@
 
 ## Template Inventory
 
-<!-- Fill after site analysis -->
-
-| # | Template | Pages | Import Script |
-|---|----------|-------|---------------|
-| 1 | | | |
+| # | Template | Pages | Notes |
+|---|----------|-------|-------|
+| 1 | GRE Homepage | gre.html | Hero + stats + cards + ping-pong columns + social |
 
 ---
 
@@ -46,57 +40,54 @@
 
 ### Custom Blocks
 
-<!-- Fill as blocks are created -->
+| Block | Purpose | File | Used On |
+|-------|---------|------|---------|
+| stats | Large percentage statistics with description text | blocks/stats/ | GRE homepage |
+| social-links | Social media icon grid with heading | blocks/social-links/ | GRE homepage |
 
-| Block | Purpose | DOM Selector | Used On |
-|-------|---------|--------------|---------|
-| | | | |
+### Standard EDS Blocks (Reused)
 
-### Standard EDS Blocks
+| Block | Purpose | Customized CSS |
+|-------|---------|---------------|
+| hero | Full-width dark purple hero with images and CTAs | Yes — dark bg, side-by-side images, cream buttons |
+| cards | Navigation card list with h3 links and descriptions | Yes — list-style without images |
+| columns | Ping-pong text/image alternating sections | Yes — ETS button styles, larger headings |
 
-accordion, tabs, carousel, columns, cards, hero, embed, form, modal, quote, video, table, search, fragment
+### Available Standard Blocks (Not yet used)
 
----
-
-## Import Scripts
-
-<!-- Fill per script created -->
-
----
-
-## Parser Reference
-
-| Parser | File | Output Block | Selectors |
-|--------|------|--------------|-----------|
-| | | | |
+accordion, tabs, carousel, embed, form, modal, quote, video, table, search, fragment
 
 ---
 
-## Source CMS DOM Patterns
+## Migration Rules
 
-<!-- Document key selectors from the source site -->
+1. **Content HTML** must include `head.html` references (`scripts/aem.js`, `scripts/scripts.js`, `styles/styles.css`) for local preview to work
+2. **Images** must be downloaded locally and referenced with absolute paths from root (`/content/gre/images/...`)
+3. **Block class names** in HTML become the EDS block identifier — must match folder name exactly
+4. **Sections** are defined by direct `<div>` children of `<main>` — each becomes a `.section`
+5. **Buttons**: EDS auto-decorates standalone links in paragraphs as `.button`. Use `<em>` wrapper for secondary (`.button.secondary`)
+6. **No external image URLs** — all assets must be local
+7. **SVG icons** work directly as `<img>` tags within blocks
 
-```
-HEADER (removed by transformer):
-  
+---
 
-MAIN CONTENT:
-  
+## Migration Learnings
 
-BLOCK TYPES:
-  
-
-FOOTER (removed by transformer):
-  
-```
+1. **xwalk local content** requires the `<head>` to include script/style references — without them, EDS decoration (sections, blocks) won't apply
+2. **Cards block** restructures content into `<ul><li>` format automatically — no need to author as list
+3. **Hero images** in first column get wrapped in a `<p>` tag by EDS — CSS must target `picture` within paragraph context
+4. **Font loading**: "Beausite Classic" is the ETS brand font — falls back to system-ui, sans-serif
+5. **Button styling**: ETS uses square corners (border-radius: 0) unlike default EDS rounded buttons
+6. **Color theming**: Each section uses distinct background colors — stats (cream #f2e9d8), social (orange-red #da4727), hero (dark purple #38002e)
+7. **Responsive layout**: Columns blocks go side-by-side at 900px+ breakpoint, stack on mobile with image-first order
 
 ---
 
 ## Known Issues
 
-<!-- Document issues discovered during migration -->
-
-1. 
+1. Header/footer use Adobe defaults (from aem-block-collection template) — should be replaced with ETS-branded nav/footer when available
+2. "Beausite Classic" font requires proper font-face loading — currently using system-ui fallback
+3. Cards block renders as single-column list per source design — may need variant for grid layout on other pages
 
 ---
 
@@ -104,12 +95,8 @@ FOOTER (removed by transformer):
 
 ```bash
 # Preview
-aem up  # http://localhost:3000/content/{page-name}
+aem up  # http://localhost:3000/content/gre/gre
 
-# Re-import single page
-echo "{url}" > /tmp/url.txt
-node "$SCRIPTS/run-bulk-import.js" --import-script tools/importer/import-{template}.bundle.js --urls /tmp/url.txt
-
-# Re-bundle
-"$SCRIPTS/aem-import-bundle.sh" --importjs tools/importer/import-{template}.js
+# Verify blocks loaded
+# In browser console: document.querySelectorAll('[data-block-name]')
 ```

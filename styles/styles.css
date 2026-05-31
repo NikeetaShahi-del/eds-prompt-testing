@@ -12,17 +12,19 @@
 
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-  --overlay-background-color:lightgrey;
+  --background-color: #ffffff;
+  --light-color: #f2e9d8;
+  --dark-color: #1a212b;
+  --text-color: #1a212b;
+  --link-color: #630f54;
+  --link-hover-color: #4a0b3f;
+  --overlay-background-color: #f2e9d8;
+  --accent-color: #da4727;
+  --dark-purple: #38002e;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: "Beausite Classic", system-ui, sans-serif;
+  --heading-font-family: "Beausite Classic", system-ui, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;

@@ -1,0 +1,51 @@
+.social-links-container {
+  background-color: #da4727;
+}
+
+.social-links-container .social-links-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.social-links .social-links-heading h2 {
+  font-family: "Beausite Classic", system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.social-links .social-links-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.social-links .social-links-icons > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links .social-links-icons a {
+  display: block;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.social-links .social-links-icons a:hover {
+  transform: scale(1.1);
+}
+
+.social-links .social-links-icons img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
