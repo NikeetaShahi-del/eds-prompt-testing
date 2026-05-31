@@ -88,7 +88,7 @@
 }
 
 .hero a.button.secondary:hover {
-  background-color: rgba(242, 233, 216, 0.1);
+  background-color: rgb(242 233 216 / 10%);
 }
 
 @media (width >= 900px) {
